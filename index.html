@@ -753,7 +753,51 @@
     <!-- Page level custom scripts -->
     <script src="js/demo/chart-area-demo.js"></script>
     <script src="js/demo/chart-pie-demo.js"></script>
+html
 
+<div>
+
+  <h3>Data Sensor Cuaca</h3>
+
+  <p id="cuaca">Memuat data...</p>
+
+</div>
+
+
+
+<script>
+
+  const apiKey = '38cfebc7a4b78cd0bf039d73392cf912';
+
+  const city = 'Bandung';
+
+
+
+  fetch(`https://api.openweathermap.org/data/2.5/weather?q=city   appid={apiKey}&units=metric`)
+
+    .then(response => response.json())
+
+    .then(data => {
+
+      const suhu = data.main.temp;
+
+      const kelembapan = data.main.humidity;
+
+      document.getElementById("cuaca").innerText =
+
+        `Suhu: suhu°C, Kelembapan:{kelembapan}%`;
+
+    })
+
+    .catch(error => {
+
+      document.getElementById("cuaca").innerText = "Gagal mengambil data.";
+
+    });
+
+</script>
+
+ ⁠
 </body>
 
 </html>
